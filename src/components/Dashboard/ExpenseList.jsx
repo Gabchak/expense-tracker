@@ -35,26 +35,26 @@ function ExpenseList({ expenses, deleteExpense, currency, selectedMonth, t }) {
   }
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-white">{t.expenseList}</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+      <div className="flex justify-between items-center mb-5">
+        <h2 className="text-lg font-bold text-gray-800 dark:text-white">{t.expenseList}</h2>
         <button
           onClick={exportToExcel}
-          className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded-xl transition-colors"
+          className="px-4 py-2 bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white text-sm font-semibold rounded-xl transition-all shadow-sm hover:shadow-md active:scale-95"
         >
-          {t.exportExcel}
+          📊 {t.exportExcel}
         </button>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mb-4">
         {categories.map(cat => (
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-xl text-sm font-medium transition-all ${
               filter === cat
-                ? 'bg-indigo-500 text-white'
-                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300'
+                ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-sm'
+                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
             }`}
           >
             {cat}
@@ -62,18 +62,18 @@ function ExpenseList({ expenses, deleteExpense, currency, selectedMonth, t }) {
         ))}
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 mb-4">
         <input
           type="text"
           placeholder={t.search}
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="flex-1 border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+          className="flex-1 border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
         />
         <select
           value={sort}
           onChange={e => setSort(e.target.value)}
-          className="border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-white"
+          className="border border-gray-200 dark:border-gray-600 rounded-xl px-4 py-2.5 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
         >
           <option value="date-desc">{t.dateDesc}</option>
           <option value="date-asc">{t.dateAsc}</option>
@@ -84,7 +84,10 @@ function ExpenseList({ expenses, deleteExpense, currency, selectedMonth, t }) {
 
       <div className="space-y-2">
         {filtered.length === 0 ? (
-          <p className="text-center text-gray-400 py-8">{t.noExpenses}</p>
+          <div className="text-center py-12">
+            <div className="text-4xl mb-3">🫙</div>
+            <p className="text-gray-400 font-medium">{t.noExpenses}</p>
+          </div>
         ) : (
           filtered.map(expense => (
             <ExpenseItem key={expense.id} expense={expense} deleteExpense={deleteExpense} currency={currency} />

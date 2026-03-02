@@ -17,18 +17,21 @@ function StatsCards({ expenses, currency, selectedMonth, t }) {
     : 0
 
   const cards = [
-    { label: t.totalMonth, value: `${totalMonth} ${currency}` },
-    { label: t.totalToday, value: `${totalToday} ${currency}` },
-    { label: t.transactions, value: totalCount },
-    { label: t.maxExpense, value: `${maxExpense} ${currency}` },
+    { label: t.totalMonth, value: `${totalMonth} ${currency}`, icon: '📅', gradient: 'from-blue-500 to-indigo-600' },
+    { label: t.totalToday, value: `${totalToday} ${currency}`, icon: '⚡', gradient: 'from-purple-500 to-pink-600' },
+    { label: t.transactions, value: totalCount, icon: '🔢', gradient: 'from-green-500 to-teal-600' },
+    { label: t.maxExpense, value: `${maxExpense} ${currency}`, icon: '🏆', gradient: 'from-orange-500 to-red-600' },
   ]
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {cards.map((card, i) => (
-        <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm">
-          <div className="text-sm text-gray-500 dark:text-gray-400">{card.label}</div>
-          <div className="text-xl font-bold text-gray-800 dark:text-white mt-1">{card.value}</div>
+        <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
+          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${card.gradient} flex items-center justify-center mb-3 shadow-sm`}>
+            <span className="text-lg">{card.icon}</span>
+          </div>
+          <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">{card.label}</div>
+          <div className="text-2xl font-bold text-gray-800 dark:text-white mt-1">{card.value}</div>
         </div>
       ))}
     </div>

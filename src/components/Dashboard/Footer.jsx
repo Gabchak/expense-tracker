@@ -1,7 +1,7 @@
 function Footer({ t }) {
   return (
-    <footer className="bg-white dark:bg-gray-800 text-center py-4 mt-8 text-sm text-gray-400">
-      {t.footer}
+    <footer className="text-center py-6 mt-4 text-sm text-gray-400 dark:text-gray-600">
+      {t.footer} · Made with ❤️
     </footer>
   )
 }
